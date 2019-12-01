@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B2ED76B7-AF63-43D6-B5C1-45BBFC54B73C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{FD91395C-7DCC-4304-B896-1D6323D66FF0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Heartbeats.Hangfire", "src\Elmah.Io.Heartbeats.Hangfire\Elmah.Io.Heartbeats.Hangfire.csproj", "{6C9903FE-623F-4198-BFA0-16F2580D274A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{2E1CA899-7F72-49DA-9856-D6AD712B5E68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elmah.Io.Heartbeats.Hangfire.ConsoleApp", "samples\Elmah.Io.Heartbeats.Hangfire.ConsoleApp\Elmah.Io.Heartbeats.Hangfire.ConsoleApp.csproj", "{86D62030-6F35-47A4-BCEA-9E5331EC6DFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C9903FE-623F-4198-BFA0-16F2580D274A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C9903FE-623F-4198-BFA0-16F2580D274A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C9903FE-623F-4198-BFA0-16F2580D274A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C9903FE-623F-4198-BFA0-16F2580D274A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86D62030-6F35-47A4-BCEA-9E5331EC6DFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86D62030-6F35-47A4-BCEA-9E5331EC6DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86D62030-6F35-47A4-BCEA-9E5331EC6DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86D62030-6F35-47A4-BCEA-9E5331EC6DFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6C9903FE-623F-4198-BFA0-16F2580D274A} = {B2ED76B7-AF63-43D6-B5C1-45BBFC54B73C}
+		{86D62030-6F35-47A4-BCEA-9E5331EC6DFE} = {2E1CA899-7F72-49DA-9856-D6AD712B5E68}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {269E0662-F4F6-4419-9157-5D0533AD1C56}
+	EndGlobalSection
+EndGlobal
