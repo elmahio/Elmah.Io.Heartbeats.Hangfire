@@ -13,6 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{2E1C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elmah.Io.Heartbeats.Hangfire.ConsoleApp", "samples\Elmah.Io.Heartbeats.Hangfire.ConsoleApp\Elmah.Io.Heartbeats.Hangfire.ConsoleApp.csproj", "{86D62030-6F35-47A4-BCEA-9E5331EC6DFE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1D0B39E7-18C1-4D7D-89FD-B18AC10153F6}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
