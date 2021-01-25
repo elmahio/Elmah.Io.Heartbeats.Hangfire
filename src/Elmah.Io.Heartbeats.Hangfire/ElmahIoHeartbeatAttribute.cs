@@ -2,11 +2,13 @@
 using Hangfire.Common;
 using Hangfire.Server;
 using System;
+using System.Diagnostics;
 
 namespace Elmah.Io.Heartbeats.Hangfire
 {
     public class ElmahIoHeartbeatAttribute : JobFilterAttribute, IServerFilter
     {
+        private const string StopwatchKeyName = "elmahio-timing";
         private readonly Guid logId;
         private readonly string heartbeatId;
         private readonly IHeartbeats heartbeats;
@@ -20,17 +22,31 @@ namespace Elmah.Io.Heartbeats.Hangfire
 
         public void OnPerforming(PerformingContext context)
         {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            context.Items.Add(StopwatchKeyName, stopwatch);
         }
 
         public void OnPerformed(PerformedContext context)
         {
+            long? took = null;
+            if (context.Items.ContainsKey(StopwatchKeyName))
+            {
+                var stopwatch = context.Items[StopwatchKeyName] as Stopwatch;
+                if (stopwatch != null)
+                {
+                    stopwatch.Stop();
+                    took = stopwatch.ElapsedMilliseconds;
+                }
+            }
+
             if (context.Exception != null)
             {
-                heartbeats.Unhealthy(logId, heartbeatId, context.Exception.ToString());
+                heartbeats.Unhealthy(logId, heartbeatId, context.Exception.ToString(), took: took);
             }
             else
             {
-                heartbeats.Healthy(logId, heartbeatId);
+                heartbeats.Healthy(logId, heartbeatId, took: took);
             }
         }
     }
