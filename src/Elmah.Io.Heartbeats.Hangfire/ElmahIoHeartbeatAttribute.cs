@@ -6,6 +6,9 @@ using System.Diagnostics;
 
 namespace Elmah.Io.Heartbeats.Hangfire
 {
+    /// <summary>
+    /// Decorate jobs with this filter to automatically log heartbeats to elmah.io.
+    /// </summary>
     public class ElmahIoHeartbeatAttribute : JobFilterAttribute, IServerFilter
     {
         private const string StopwatchKeyName = "elmahio-timing";
@@ -13,6 +16,9 @@ namespace Elmah.Io.Heartbeats.Hangfire
         private readonly string heartbeatId;
         private readonly IHeartbeats heartbeats;
 
+        /// <summary>
+        /// Creates a new instance of the attribute. Provide the API key, log ID and heartbeat ID found in the elmah.io UI.
+        /// </summary>
         public ElmahIoHeartbeatAttribute(string apiKey, string logId, string heartbeatId)
         {
             heartbeats = ElmahioAPI.Create(apiKey).Heartbeats;
@@ -20,6 +26,9 @@ namespace Elmah.Io.Heartbeats.Hangfire
             this.heartbeatId = heartbeatId;
         }
 
+        /// <summary>
+        /// Called by Hangire just before executing the job.
+        /// </summary>
         public void OnPerforming(PerformingContext context)
         {
             var stopwatch = new Stopwatch();
@@ -27,6 +36,9 @@ namespace Elmah.Io.Heartbeats.Hangfire
             context.Items.Add(StopwatchKeyName, stopwatch);
         }
 
+        /// <summary>
+        /// Called by Hangfire just after executing the job.
+        /// </summary>
         public void OnPerformed(PerformedContext context)
         {
             long? took = null;
