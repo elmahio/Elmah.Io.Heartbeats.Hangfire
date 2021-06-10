@@ -14,7 +14,7 @@ namespace Elmah.Io.Heartbeats.Hangfire
         private const string StopwatchKeyName = "elmahio-timing";
         private readonly Guid logId;
         private readonly string heartbeatId;
-        private readonly IHeartbeats heartbeats;
+        private readonly IHeartbeatsClient heartbeats;
 
         /// <summary>
         /// Creates a new instance of the attribute. Provide the API key, log ID and heartbeat ID found in the elmah.io UI.
