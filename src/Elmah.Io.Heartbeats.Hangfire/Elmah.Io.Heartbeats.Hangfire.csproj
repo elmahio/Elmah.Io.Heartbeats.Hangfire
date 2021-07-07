@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Description>Logging heartbeats from Hangfire to elmah.io</Description>
     <Authors>elmah.io</Authors>
-    <TargetFramework>netstandard1.4</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Elmah.Io.Heartbeats.Hangfire</AssemblyName>
     <PackageId>Elmah.Io.Heartbeats.Hangfire</PackageId>
     <PackageTags>Error;Exception;Reporting;Management;Logging;ELMAH;Diagnostics;Tracing;Hangfire;Heartbeats</PackageTags>
