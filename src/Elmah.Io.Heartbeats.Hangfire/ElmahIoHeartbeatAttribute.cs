@@ -3,6 +3,7 @@ using Hangfire.Common;
 using Hangfire.Server;
 using System;
 using System.Diagnostics;
+using System.Net.Http.Headers;
 
 namespace Elmah.Io.Heartbeats.Hangfire
 {
@@ -11,6 +12,9 @@ namespace Elmah.Io.Heartbeats.Hangfire
     /// </summary>
     public class ElmahIoHeartbeatAttribute : JobFilterAttribute, IServerFilter
     {
+        internal static string _assemblyVersion = typeof(ElmahIoHeartbeatAttribute).Assembly.GetName().Version.ToString();
+        internal static string _hangfireAssemblyVersion = typeof(JobFilterAttribute).Assembly.GetName().Version.ToString();
+
         private const string StopwatchKeyName = "elmahio-timing";
         private readonly Guid logId;
         private readonly string heartbeatId;
@@ -21,7 +25,10 @@ namespace Elmah.Io.Heartbeats.Hangfire
         /// </summary>
         public ElmahIoHeartbeatAttribute(string apiKey, string logId, string heartbeatId)
         {
-            heartbeats = ElmahioAPI.Create(apiKey).Heartbeats;
+            var elmahioApi = ElmahioAPI.Create(apiKey);
+            elmahioApi.HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Heartbeats.Hangfire", _assemblyVersion)));
+            elmahioApi.HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue("Hangfire.Core", _hangfireAssemblyVersion)));
+            heartbeats = elmahioApi.Heartbeats;
             this.logId = new Guid(logId);
             this.heartbeatId = heartbeatId;
         }
