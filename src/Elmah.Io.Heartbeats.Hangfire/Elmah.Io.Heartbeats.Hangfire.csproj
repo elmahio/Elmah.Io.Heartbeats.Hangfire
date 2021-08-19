@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Elmah.Io.Client" Version="[4.0.26-pre,5)" />
+    <PackageReference Include="Elmah.Io.Client" Version="[4.0.29,5)" />
     <PackageReference Include="Hangfire.Core" Version="1.6.0" />
   </ItemGroup>
 
