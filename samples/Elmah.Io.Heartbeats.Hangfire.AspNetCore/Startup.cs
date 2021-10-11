@@ -22,6 +22,8 @@ namespace Elmah.Io.Heartbeats.Hangfire.AspNetCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHangfire(config => config
+                // Remove the comment on the following line to install the elmah.io heartbeat filter as a global filter:
+                //.UseFilter(new ElmahIoHeartbeatAttribute(Configuration["ElmahIo:ApiKey"], Configuration["ElmahIo:LogId"], Configuration["ElmahIo:HeartbeatId"]))
                 .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
                 .UseSimpleAssemblyNameTypeSerializer()
                 .UseRecommendedSerializerSettings()
