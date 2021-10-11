@@ -4,6 +4,7 @@ using Hangfire.Server;
 using System;
 using System.Diagnostics;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace Elmah.Io.Heartbeats.Hangfire
 {
@@ -25,9 +26,10 @@ namespace Elmah.Io.Heartbeats.Hangfire
         /// </summary>
         public ElmahIoHeartbeatAttribute(string apiKey, string logId, string heartbeatId)
         {
-            var elmahioApi = ElmahioAPI.Create(apiKey);
-            elmahioApi.HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Heartbeats.Hangfire", _assemblyVersion)));
-            elmahioApi.HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue("Hangfire.Core", _hangfireAssemblyVersion)));
+            var elmahioApi = ElmahioAPI.Create(apiKey, new ElmahIoOptions
+            {
+                UserAgent = UserAgent(),
+            });
             heartbeats = elmahioApi.Heartbeats;
             this.logId = new Guid(logId);
             this.heartbeatId = heartbeatId;
@@ -67,6 +69,15 @@ namespace Elmah.Io.Heartbeats.Hangfire
             {
                 heartbeats.Healthy(logId, heartbeatId, took: took);
             }
+        }
+
+        private static string UserAgent()
+        {
+            return new StringBuilder()
+                .Append(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Heartbeats.Hangfire", _assemblyVersion)).ToString())
+                .Append(" ")
+                .Append(new ProductInfoHeaderValue(new ProductHeaderValue("Hangfire.Core", _hangfireAssemblyVersion)).ToString())
+                .ToString();
         }
     }
 }
