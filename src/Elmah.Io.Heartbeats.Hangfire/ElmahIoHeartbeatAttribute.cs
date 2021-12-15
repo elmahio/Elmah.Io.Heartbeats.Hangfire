@@ -21,18 +21,27 @@ namespace Elmah.Io.Heartbeats.Hangfire
         private readonly string heartbeatId;
         private readonly IHeartbeatsClient heartbeats;
 
+        private ElmahIoHeartbeatAttribute(Guid logId, string heartbeatId)
+        {
+            this.logId = logId;
+            this.heartbeatId = heartbeatId;
+        }
+
+        internal ElmahIoHeartbeatAttribute(IHeartbeatsClient heartbeatsClient, string logId, string heartbeatId) : this(new Guid(logId), heartbeatId)
+        {
+            heartbeats = heartbeatsClient;
+        }
+
         /// <summary>
         /// Creates a new instance of the attribute. Provide the API key, log ID and heartbeat ID found in the elmah.io UI.
         /// </summary>
-        public ElmahIoHeartbeatAttribute(string apiKey, string logId, string heartbeatId)
+        public ElmahIoHeartbeatAttribute(string apiKey, string logId, string heartbeatId) : this(new Guid(logId), heartbeatId)
         {
             var elmahioApi = ElmahioAPI.Create(apiKey, new ElmahIoOptions
             {
                 UserAgent = UserAgent(),
             });
             heartbeats = elmahioApi.Heartbeats;
-            this.logId = new Guid(logId);
-            this.heartbeatId = heartbeatId;
         }
 
         /// <summary>
