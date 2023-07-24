@@ -13,16 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{2E1C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Heartbeats.Hangfire.AspNetCore", "samples\Elmah.Io.Heartbeats.Hangfire.AspNetCore\Elmah.Io.Heartbeats.Hangfire.AspNetCore.csproj", "{5B02594C-F41E-4E0D-92A1-9A6024158020}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2613C3F7-0C3B-4ECE-B567-78485C49E7D3}"
-	ProjectSection(SolutionItems) = preProject
-		.github\workflows\build.yml = .github\workflows\build.yml
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Heartbeats.Hangfire.AspNetCore60", "samples\Elmah.Io.Heartbeats.Hangfire.AspNetCore60\Elmah.Io.Heartbeats.Hangfire.AspNetCore60.csproj", "{EF01614B-558F-4909-A608-32D9CCDEC1EA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Heartbeats.Hangfire.Tests", "test\Elmah.Io.Heartbeats.Hangfire.Tests\Elmah.Io.Heartbeats.Hangfire.Tests.csproj", "{E69F56C4-DFF9-43E1-B68A-6D6BDE574AFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elmah.Io.Heartbeats.Hangfire.AspNetCore70", "samples\Elmah.Io.Heartbeats.Hangfire.AspNetCore70\Elmah.Io.Heartbeats.Hangfire.AspNetCore70.csproj", "{A6A5D5A8-ED82-464E-8565-733DE0599EC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Heartbeats.Hangfire.AspNetCore70", "samples\Elmah.Io.Heartbeats.Hangfire.AspNetCore70\Elmah.Io.Heartbeats.Hangfire.AspNetCore70.csproj", "{A6A5D5A8-ED82-464E-8565-733DE0599EC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
