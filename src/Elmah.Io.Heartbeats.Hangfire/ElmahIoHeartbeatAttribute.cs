@@ -13,8 +13,8 @@ namespace Elmah.Io.Heartbeats.Hangfire
     /// </summary>
     public class ElmahIoHeartbeatAttribute : JobFilterAttribute, IServerFilter
     {
-        internal static string _assemblyVersion = typeof(ElmahIoHeartbeatAttribute).Assembly.GetName().Version.ToString();
-        internal static string _hangfireAssemblyVersion = typeof(JobFilterAttribute).Assembly.GetName().Version.ToString();
+        private static string _assemblyVersion = typeof(ElmahIoHeartbeatAttribute).Assembly.GetName().Version.ToString();
+        private static string _hangfireAssemblyVersion = typeof(JobFilterAttribute).Assembly.GetName().Version.ToString();
 
         private const string StopwatchKeyName = "elmahio-timing";
         private readonly Guid logId;
@@ -47,32 +47,28 @@ namespace Elmah.Io.Heartbeats.Hangfire
         /// <summary>
         /// Called by Hangire just before executing the job.
         /// </summary>
-        public void OnPerforming(PerformingContext context)
+        public void OnPerforming(PerformingContext filterContext)
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            context.Items.Add(StopwatchKeyName, stopwatch);
+            filterContext.Items.Add(StopwatchKeyName, stopwatch);
         }
 
         /// <summary>
         /// Called by Hangfire just after executing the job.
         /// </summary>
-        public void OnPerformed(PerformedContext context)
+        public void OnPerformed(PerformedContext filterContext)
         {
             long? took = null;
-            if (context.Items.ContainsKey(StopwatchKeyName))
+            if (filterContext.Items.ContainsKey(StopwatchKeyName) && filterContext.Items[StopwatchKeyName] is Stopwatch stopwatch)
             {
-                var stopwatch = context.Items[StopwatchKeyName] as Stopwatch;
-                if (stopwatch != null)
-                {
-                    stopwatch.Stop();
-                    took = stopwatch.ElapsedMilliseconds;
-                }
+                stopwatch.Stop();
+                took = stopwatch.ElapsedMilliseconds;
             }
 
-            if (context.Exception != null)
+            if (filterContext.Exception != null)
             {
-                heartbeats.Unhealthy(logId, heartbeatId, context.Exception.ToString(), took: took);
+                heartbeats.Unhealthy(logId, heartbeatId, filterContext.Exception.ToString(), took: took);
             }
             else
             {

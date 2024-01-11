@@ -53,7 +53,7 @@ namespace Elmah.Io.Heartbeats.Hangfire.Tests
             heartbeatsClientMock.DidNotReceive().Healthy(Arg.Any<Guid>(), Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>(), Arg.Any<long?>());
         }
 
-        private HangfireServer.PerformedContext PerformedContext(Exception exception)
+        private static HangfireServer.PerformedContext PerformedContext(Exception exception)
         {
             return new HangfireServer.PerformedContext(
                 new HangfireServer.PerformContext(
