@@ -13,8 +13,8 @@ namespace Elmah.Io.Heartbeats.Hangfire
     /// </summary>
     public class ElmahIoHeartbeatAttribute : JobFilterAttribute, IServerFilter
     {
-        private static string _assemblyVersion = typeof(ElmahIoHeartbeatAttribute).Assembly.GetName().Version.ToString();
-        private static string _hangfireAssemblyVersion = typeof(JobFilterAttribute).Assembly.GetName().Version.ToString();
+        private static readonly string _assemblyVersion = typeof(ElmahIoHeartbeatAttribute).Assembly.GetName().Version.ToString();
+        private static readonly string _hangfireAssemblyVersion = typeof(JobFilterAttribute).Assembly.GetName().Version.ToString();
 
         private const string StopwatchKeyName = "elmahio-timing";
         private readonly Guid logId;
