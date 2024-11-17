@@ -11,6 +11,7 @@ namespace Elmah.Io.Heartbeats.Hangfire
     /// <summary>
     /// Decorate jobs with this filter to automatically log heartbeats to elmah.io.
     /// </summary>
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Method)]
     public class ElmahIoHeartbeatAttribute : JobFilterAttribute, IServerFilter
     {
         private static readonly string _assemblyVersion = typeof(ElmahIoHeartbeatAttribute).Assembly.GetName().Version.ToString();
